@@ -15,11 +15,11 @@ About the service design, we'd better forget the traditional idea of MVC in our 
 - living service: it is dependent on the room service, the user service, the video content service and the identity service, implementing the living business logic.
 - gift service: it is dependent on the room service, the user service, the identity service, the pay service and the message channel service, implementing the gift business logic.
 ### About the basic service layer
-- user service: it implements the user information logic, such as user identity and so on.
+- user service: it implements the user information logic, such as managing user identity and so on.
 - room service: it implements the room information logic.
 - wallet service: it implements the wallet logic, such as the account balance.
 - pay service: it implements the room pay logic, such as payment channels and reconciliation.
-- video_content service: it implements the video content logic, such as managing video meta data.
+- video_content service: it implements the video content logic, such as managing video meta data, generating play links.
 - goods service: it implements the goods logic, such as managing goods meta data.
 - message_channel service: it implements the message channel logic, ensuring reliable message delivery.
 
