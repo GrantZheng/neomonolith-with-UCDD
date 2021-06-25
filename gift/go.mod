@@ -1,3 +1,3 @@
-module gift
+module github.com/GrantZheng/monolith_demo/gift
 
-go 1.13
+go 1.15

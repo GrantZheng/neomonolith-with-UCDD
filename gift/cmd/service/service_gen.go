@@ -2,10 +2,12 @@
 package service
 
 import (
-	endpoint "gift/pkg/endpoint"
-	http1 "gift/pkg/http"
+	endpoint "github.com/GrantZheng/monolith_demo/gift/pkg/endpoint"
+	http1 "github.com/GrantZheng/monolith_demo/gift/pkg/http"
+	service "github.com/GrantZheng/monolith_demo/gift/pkg/service"
 	endpoint1 "github.com/go-kit/kit/endpoint"
 	log "github.com/go-kit/kit/log"
+	prometheus "github.com/go-kit/kit/metrics/prometheus"
 	opentracing "github.com/go-kit/kit/tracing/opentracing"
 	http "github.com/go-kit/kit/transport/http"
 	group "github.com/oklog/oklog/pkg/group"
@@ -18,14 +20,17 @@ func createService(endpoints endpoint.Endpoints) (g *group.Group) {
 	return g
 }
 func defaultHttpOptions(logger log.Logger, tracer opentracinggo.Tracer) map[string][]http.ServerOption {
-	options := map[string][]http.ServerOption{
-		"List": {http.ServerErrorEncoder(http1.ErrorEncoder), http.ServerErrorLogger(logger), http.ServerBefore(opentracing.HTTPToContext(tracer, "List", logger))},
-		"Send": {http.ServerErrorEncoder(http1.ErrorEncoder), http.ServerErrorLogger(logger), http.ServerBefore(opentracing.HTTPToContext(tracer, "Send", logger))},
-	}
+	options := map[string][]http.ServerOption{"Give": {http.ServerErrorEncoder(http1.ErrorEncoder), http.ServerErrorLogger(logger), http.ServerBefore(opentracing.HTTPToContext(tracer, "Give", logger))}}
 	return options
 }
+func addDefaultEndpointMiddleware(logger log.Logger, duration *prometheus.Summary, mw map[string][]endpoint1.Middleware) {
+	mw["Give"] = []endpoint1.Middleware{endpoint.LoggingMiddleware(log.With(logger, "method", "Give")), endpoint.InstrumentingMiddleware(duration.With("method", "Give"))}
+}
+func addDefaultServiceMiddleware(logger log.Logger, mw []service.Middleware) []service.Middleware {
+	return append(mw, service.LoggingMiddleware(logger))
+}
 func addEndpointMiddlewareToAllMethods(mw map[string][]endpoint1.Middleware, m endpoint1.Middleware) {
-	methods := []string{"List", "Send"}
+	methods := []string{"Give"}
 	for _, v := range methods {
 		mw[v] = append(mw[v], m)
 	}

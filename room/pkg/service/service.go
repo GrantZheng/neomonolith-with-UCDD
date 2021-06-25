@@ -9,7 +9,6 @@ type RoomService interface {
 	// Add your methods here
 	Get(ctx context.Context, roomid string) (rs string, err error)
 }
-
 type basicRoomService struct{}
 
 func (b *basicRoomService) Get(ctx context.Context, roomid string) (rs string, err error) {

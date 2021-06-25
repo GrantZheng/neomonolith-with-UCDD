@@ -1,3 +1,3 @@
-module goods
+module github.com/GrantZheng/monolith_demo/goods
 
-go 1.13
+go 1.15

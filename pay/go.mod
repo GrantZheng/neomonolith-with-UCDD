@@ -1,3 +1,3 @@
-module pay
+module github.com/GrantZheng/monolith_demo/pay
 
-go 1.13
+go 1.15

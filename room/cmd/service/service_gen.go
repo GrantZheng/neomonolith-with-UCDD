@@ -2,14 +2,16 @@
 package service
 
 import (
+	endpoint "github.com/GrantZheng/monolith_demo/room/pkg/endpoint"
+	http1 "github.com/GrantZheng/monolith_demo/room/pkg/http"
+	service "github.com/GrantZheng/monolith_demo/room/pkg/service"
 	endpoint1 "github.com/go-kit/kit/endpoint"
 	log "github.com/go-kit/kit/log"
+	prometheus "github.com/go-kit/kit/metrics/prometheus"
 	opentracing "github.com/go-kit/kit/tracing/opentracing"
 	http "github.com/go-kit/kit/transport/http"
 	group "github.com/oklog/oklog/pkg/group"
 	opentracinggo "github.com/opentracing/opentracing-go"
-	endpoint "room/pkg/endpoint"
-	http1 "room/pkg/http"
 )
 
 func createService(endpoints endpoint.Endpoints) (g *group.Group) {
@@ -20,6 +22,12 @@ func createService(endpoints endpoint.Endpoints) (g *group.Group) {
 func defaultHttpOptions(logger log.Logger, tracer opentracinggo.Tracer) map[string][]http.ServerOption {
 	options := map[string][]http.ServerOption{"Get": {http.ServerErrorEncoder(http1.ErrorEncoder), http.ServerErrorLogger(logger), http.ServerBefore(opentracing.HTTPToContext(tracer, "Get", logger))}}
 	return options
+}
+func addDefaultEndpointMiddleware(logger log.Logger, duration *prometheus.Summary, mw map[string][]endpoint1.Middleware) {
+	mw["Get"] = []endpoint1.Middleware{endpoint.LoggingMiddleware(log.With(logger, "method", "Get")), endpoint.InstrumentingMiddleware(duration.With("method", "Get"))}
+}
+func addDefaultServiceMiddleware(logger log.Logger, mw []service.Middleware) []service.Middleware {
+	return append(mw, service.LoggingMiddleware(logger))
 }
 func addEndpointMiddlewareToAllMethods(mw map[string][]endpoint1.Middleware, m endpoint1.Middleware) {
 	methods := []string{"Get"}

@@ -1,3 +1,3 @@
-module video_content
+module github.com/GrantZheng/monolith_demo/video_content
 
-go 1.13
+go 1.15

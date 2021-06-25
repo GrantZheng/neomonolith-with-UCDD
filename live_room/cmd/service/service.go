@@ -4,6 +4,9 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	endpoint "github.com/GrantZheng/monolith_demo/live_room/pkg/endpoint"
+	http1 "github.com/GrantZheng/monolith_demo/live_room/pkg/http"
+	service "github.com/GrantZheng/monolith_demo/live_room/pkg/service"
 	endpoint1 "github.com/go-kit/kit/endpoint"
 	log "github.com/go-kit/kit/log"
 	lightsteptracergo "github.com/lightstep/lightstep-tracer-go"
@@ -13,9 +16,6 @@ import (
 	zipkingo "github.com/openzipkin/zipkin-go"
 	http "github.com/openzipkin/zipkin-go/reporter/http"
 	promhttp "github.com/prometheus/client_golang/prometheus/promhttp"
-	endpoint "live_room/pkg/endpoint"
-	http1 "live_room/pkg/http"
-	service "live_room/pkg/service"
 	"net"
 	http2 "net/http"
 	"os"
@@ -31,7 +31,7 @@ var logger log.Logger
 // Define our flags. Your service probably won't need to bind listeners for
 // all* supported transports, but we do it here for demonstration purposes.
 var fs = flag.NewFlagSet("live_room", flag.ExitOnError)
-var debugAddr = fs.String("debug-addr", ":8080", "Debug and metrics listen address")
+var debugAddr = fs.String("debug.addr", ":8080", "Debug and metrics listen address")
 var httpAddr = fs.String("http-addr", ":8081", "HTTP listen address")
 var grpcAddr = fs.String("grpc-addr", ":8082", "gRPC listen address")
 var thriftAddr = fs.String("thrift-addr", ":8083", "Thrift listen address")

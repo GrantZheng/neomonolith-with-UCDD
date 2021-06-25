@@ -2,8 +2,8 @@
 package endpoint
 
 import (
+	service "github.com/GrantZheng/monolith_demo/pay/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
-	service "pay/pkg/service"
 )
 
 // Endpoints collects all of the endpoints that compose a profile service. It's

@@ -2,7 +2,7 @@
 package http
 
 import (
-	endpoint "barrage/pkg/endpoint"
+	endpoint "github.com/GrantZheng/monolith_demo/barrage/pkg/endpoint"
 	http "github.com/go-kit/kit/transport/http"
 	http1 "net/http"
 )

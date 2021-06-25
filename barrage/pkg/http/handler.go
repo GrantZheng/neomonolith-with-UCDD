@@ -1,10 +1,10 @@
 package http
 
 import (
-	endpoint "barrage/pkg/endpoint"
 	"context"
 	"encoding/json"
 	"errors"
+	endpoint "github.com/GrantZheng/monolith_demo/barrage/pkg/endpoint"
 	http1 "github.com/go-kit/kit/transport/http"
 	"net/http"
 )

@@ -1,6 +1,6 @@
 package main
 
-import service "live_room/cmd/service"
+import service "github.com/GrantZheng/monolith_demo/live_room/cmd/service"
 
 func main() {
 	service.Run()

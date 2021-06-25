@@ -2,7 +2,7 @@
 package http
 
 import (
-	endpoint "gift/pkg/endpoint"
+	endpoint "github.com/GrantZheng/monolith_demo/gift/pkg/endpoint"
 	http "github.com/go-kit/kit/transport/http"
 	http1 "net/http"
 )
@@ -11,7 +11,6 @@ import (
 // predefined paths.
 func NewHTTPHandler(endpoints endpoint.Endpoints, options map[string][]http.ServerOption) http1.Handler {
 	m := http1.NewServeMux()
-	makeListHandler(m, endpoints, options["List"])
-	makeSendHandler(m, endpoints, options["Send"])
+	makeGiveHandler(m, endpoints, options["Give"])
 	return m
 }

@@ -2,8 +2,8 @@ package endpoint
 
 import (
 	"context"
+	service "github.com/GrantZheng/monolith_demo/live_room/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
-	service "live_room/pkg/service"
 )
 
 // GetRequest collects the request parameters for the Get method.

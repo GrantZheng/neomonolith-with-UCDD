@@ -2,8 +2,8 @@ package endpoint
 
 import (
 	"context"
+	service "github.com/GrantZheng/monolith_demo/pay/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
-	service "pay/pkg/service"
 )
 
 // PayRequest collects the request parameters for the Pay method.

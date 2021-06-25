@@ -2,9 +2,9 @@
 package http
 
 import (
+	endpoint "github.com/GrantZheng/monolith_demo/pay/pkg/endpoint"
 	http "github.com/go-kit/kit/transport/http"
 	http1 "net/http"
-	endpoint "pay/pkg/endpoint"
 )
 
 // NewHTTPHandler returns a handler that makes a set of endpoints available on

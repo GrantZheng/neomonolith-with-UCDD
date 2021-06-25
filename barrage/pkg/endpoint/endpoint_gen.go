@@ -2,7 +2,7 @@
 package endpoint
 
 import (
-	service "barrage/pkg/service"
+	service "github.com/GrantZheng/monolith_demo/barrage/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
 )
 

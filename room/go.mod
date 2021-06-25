@@ -1,3 +1,3 @@
-module room
+module github.com/GrantZheng/monolith_demo/room
 
-go 1.13
+go 1.15

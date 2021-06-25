@@ -1,3 +1,3 @@
-module sensitive_words
+module github.com/GrantZheng/monolith_demo/sensitive_words
 
-go 1.13
+go 1.15

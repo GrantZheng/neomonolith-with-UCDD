@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	endpoint "github.com/GrantZheng/monolith_demo/room/pkg/endpoint"
 	http1 "github.com/go-kit/kit/transport/http"
 	"net/http"
-	endpoint "room/pkg/endpoint"
 )
 
 // makeGetHandler creates the handler logic

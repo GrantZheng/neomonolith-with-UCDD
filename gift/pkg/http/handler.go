@@ -4,52 +4,27 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	endpoint "gift/pkg/endpoint"
+	endpoint "github.com/GrantZheng/monolith_demo/gift/pkg/endpoint"
 	http1 "github.com/go-kit/kit/transport/http"
 	"net/http"
 )
 
-// makeListHandler creates the handler logic
-func makeListHandler(m *http.ServeMux, endpoints endpoint.Endpoints, options []http1.ServerOption) {
-	m.Handle("/list", http1.NewServer(endpoints.ListEndpoint, decodeListRequest, encodeListResponse, options...))
+// makeGiveHandler creates the handler logic
+func makeGiveHandler(m *http.ServeMux, endpoints endpoint.Endpoints, options []http1.ServerOption) {
+	m.Handle("/give", http1.NewServer(endpoints.GiveEndpoint, decodeGiveRequest, encodeGiveResponse, options...))
 }
 
-// decodeListRequest is a transport/http.DecodeRequestFunc that decodes a
+// decodeGiveRequest is a transport/http.DecodeRequestFunc that decodes a
 // JSON-encoded request from the HTTP request body.
-func decodeListRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	req := endpoint.ListRequest{}
+func decodeGiveRequest(_ context.Context, r *http.Request) (interface{}, error) {
+	req := endpoint.GiveRequest{}
 	err := json.NewDecoder(r.Body).Decode(&req)
 	return req, err
 }
 
-// encodeListResponse is a transport/http.EncodeResponseFunc that encodes
+// encodeGiveResponse is a transport/http.EncodeResponseFunc that encodes
 // the response as JSON to the response writer
-func encodeListResponse(ctx context.Context, w http.ResponseWriter, response interface{}) (err error) {
-	if f, ok := response.(endpoint.Failure); ok && f.Failed() != nil {
-		ErrorEncoder(ctx, f.Failed(), w)
-		return nil
-	}
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	err = json.NewEncoder(w).Encode(response)
-	return
-}
-
-// makeSendHandler creates the handler logic
-func makeSendHandler(m *http.ServeMux, endpoints endpoint.Endpoints, options []http1.ServerOption) {
-	m.Handle("/send", http1.NewServer(endpoints.SendEndpoint, decodeSendRequest, encodeSendResponse, options...))
-}
-
-// decodeSendRequest is a transport/http.DecodeRequestFunc that decodes a
-// JSON-encoded request from the HTTP request body.
-func decodeSendRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	req := endpoint.SendRequest{}
-	err := json.NewDecoder(r.Body).Decode(&req)
-	return req, err
-}
-
-// encodeSendResponse is a transport/http.EncodeResponseFunc that encodes
-// the response as JSON to the response writer
-func encodeSendResponse(ctx context.Context, w http.ResponseWriter, response interface{}) (err error) {
+func encodeGiveResponse(ctx context.Context, w http.ResponseWriter, response interface{}) (err error) {
 	if f, ok := response.(endpoint.Failure); ok && f.Failed() != nil {
 		ErrorEncoder(ctx, f.Failed(), w)
 		return nil

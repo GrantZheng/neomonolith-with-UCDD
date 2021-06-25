@@ -4,17 +4,19 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	endpoint "gift/pkg/endpoint"
-	http1 "gift/pkg/http"
-	service "gift/pkg/service"
+	endpoint "github.com/GrantZheng/monolith_demo/gift/pkg/endpoint"
+	http1 "github.com/GrantZheng/monolith_demo/gift/pkg/http"
+	service "github.com/GrantZheng/monolith_demo/gift/pkg/service"
 	endpoint1 "github.com/go-kit/kit/endpoint"
 	log "github.com/go-kit/kit/log"
+	prometheus "github.com/go-kit/kit/metrics/prometheus"
 	lightsteptracergo "github.com/lightstep/lightstep-tracer-go"
 	group "github.com/oklog/oklog/pkg/group"
 	opentracinggo "github.com/opentracing/opentracing-go"
 	zipkingoopentracing "github.com/openzipkin-contrib/zipkin-go-opentracing"
 	zipkingo "github.com/openzipkin/zipkin-go"
 	http "github.com/openzipkin/zipkin-go/reporter/http"
+	prometheus1 "github.com/prometheus/client_golang/prometheus"
 	promhttp "github.com/prometheus/client_golang/prometheus/promhttp"
 	"net"
 	http2 "net/http"
@@ -31,7 +33,7 @@ var logger log.Logger
 // Define our flags. Your service probably won't need to bind listeners for
 // all* supported transports, but we do it here for demonstration purposes.
 var fs = flag.NewFlagSet("gift", flag.ExitOnError)
-var debugAddr = fs.String("debug-addr", ":8080", "Debug and metrics listen address")
+var debugAddr = fs.String("debug.addr", ":8080", "Debug and metrics listen address")
 var httpAddr = fs.String("http-addr", ":8081", "HTTP listen address")
 var grpcAddr = fs.String("grpc-addr", ":8082", "gRPC listen address")
 var thriftAddr = fs.String("thrift-addr", ":8083", "Thrift listen address")
@@ -109,12 +111,20 @@ func initHttpHandler(endpoints endpoint.Endpoints, g *group.Group) {
 }
 func getServiceMiddleware(logger log.Logger) (mw []service.Middleware) {
 	mw = []service.Middleware{}
+	mw = addDefaultServiceMiddleware(logger, mw)
 	// Append your middleware here
 
 	return
 }
 func getEndpointMiddleware(logger log.Logger) (mw map[string][]endpoint1.Middleware) {
 	mw = map[string][]endpoint1.Middleware{}
+	duration := prometheus.NewSummaryFrom(prometheus1.SummaryOpts{
+		Help:      "Request duration in seconds.",
+		Name:      "request_duration_seconds",
+		Namespace: "example",
+		Subsystem: "gift",
+	}, []string{"method", "success"})
+	addDefaultEndpointMiddleware(logger, duration, mw)
 	// Add you endpoint middleware here
 
 	return

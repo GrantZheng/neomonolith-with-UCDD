@@ -2,7 +2,7 @@
 package endpoint
 
 import (
-	service "gift/pkg/service"
+	service "github.com/GrantZheng/monolith_demo/gift/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
 )
 
@@ -10,22 +10,15 @@ import (
 // meant to be used as a helper struct, to collect all of the endpoints into a
 // single parameter.
 type Endpoints struct {
-	ListEndpoint endpoint.Endpoint
-	SendEndpoint endpoint.Endpoint
+	GiveEndpoint endpoint.Endpoint
 }
 
 // New returns a Endpoints struct that wraps the provided service, and wires in all of the
 // expected endpoint middlewares
 func New(s service.GiftService, mdw map[string][]endpoint.Middleware) Endpoints {
-	eps := Endpoints{
-		ListEndpoint: MakeListEndpoint(s),
-		SendEndpoint: MakeSendEndpoint(s),
-	}
-	for _, m := range mdw["List"] {
-		eps.ListEndpoint = m(eps.ListEndpoint)
-	}
-	for _, m := range mdw["Send"] {
-		eps.SendEndpoint = m(eps.SendEndpoint)
+	eps := Endpoints{GiveEndpoint: MakeGiveEndpoint(s)}
+	for _, m := range mdw["Give"] {
+		eps.GiveEndpoint = m(eps.GiveEndpoint)
 	}
 	return eps
 }

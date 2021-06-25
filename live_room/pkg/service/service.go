@@ -1,6 +1,8 @@
 package service
 
-import "context"
+import (
+	"context"
+)
 
 // LiveRoomService describes the service.
 type LiveRoomService interface {

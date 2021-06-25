@@ -1,16 +1,18 @@
 package service
 
-import "context"
+import (
+	"context"
+)
 
 // GoodsService describes the service.
 type GoodsService interface {
 	// Add your methods here
-	Get(ctx context.Context, id string) (rs string, err error)
+	Get(ctx context.Context, s string) (rs string, err error)
 }
 
 type basicGoodsService struct{}
 
-func (b *basicGoodsService) Get(ctx context.Context, id string) (rs string, err error) {
+func (b *basicGoodsService) Get(ctx context.Context, s string) (rs string, err error) {
 	// TODO implement the business logic of Get
 	return rs, err
 }

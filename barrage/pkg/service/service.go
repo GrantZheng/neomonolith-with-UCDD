@@ -1,6 +1,8 @@
 package service
 
-import "context"
+import (
+	"context"
+)
 
 // BarrageService describes the service.
 type BarrageService interface {

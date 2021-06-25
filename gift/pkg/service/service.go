@@ -7,18 +7,13 @@ import (
 // GiftService describes the service.
 type GiftService interface {
 	// Add your methods here
-	List(ctx context.Context, s string) (rs string, err error)
-	Send(ctx context.Context, from string, to string, gift_id string) (rs string, err error)
+	Give(ctx context.Context, from string, tu string, gift_id string, gift_num string) (rs string, err error)
 }
 
 type basicGiftService struct{}
 
-func (b *basicGiftService) List(ctx context.Context, s string) (rs string, err error) {
-	// TODO implement the business logic of List
-	return rs, err
-}
-func (b *basicGiftService) Send(ctx context.Context, from string, to string, gift_id string) (rs string, err error) {
-	// TODO implement the business logic of Send
+func (b *basicGiftService) Give(ctx context.Context, from string, tu string, gift_id string, gift_num string) (rs string, err error) {
+	// TODO implement the business logic of Give
 	return rs, err
 }
 

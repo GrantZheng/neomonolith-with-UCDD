@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	endpoint "github.com/GrantZheng/monolith_demo/goods/pkg/endpoint"
 	http1 "github.com/go-kit/kit/transport/http"
-	endpoint "goods/pkg/endpoint"
 	"net/http"
 )
 

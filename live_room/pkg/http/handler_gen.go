@@ -2,8 +2,8 @@
 package http
 
 import (
+	endpoint "github.com/GrantZheng/monolith_demo/live_room/pkg/endpoint"
 	http "github.com/go-kit/kit/transport/http"
-	endpoint "live_room/pkg/endpoint"
 	http1 "net/http"
 )
 

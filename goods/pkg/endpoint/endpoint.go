@@ -2,13 +2,13 @@ package endpoint
 
 import (
 	"context"
+	service "github.com/GrantZheng/monolith_demo/goods/pkg/service"
 	endpoint "github.com/go-kit/kit/endpoint"
-	service "goods/pkg/service"
 )
 
 // GetRequest collects the request parameters for the Get method.
 type GetRequest struct {
-	Id string `json:"id"`
+	S string `json:"s"`
 }
 
 // GetResponse collects the response parameters for the Get method.
@@ -21,7 +21,7 @@ type GetResponse struct {
 func MakeGetEndpoint(s service.GoodsService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(GetRequest)
-		rs, err := s.Get(ctx, req.Id)
+		rs, err := s.Get(ctx, req.S)
 		return GetResponse{
 			Err: err,
 			Rs:  rs,
@@ -42,8 +42,8 @@ type Failure interface {
 }
 
 // Get implements Service. Primarily useful in a client.
-func (e Endpoints) Get(ctx context.Context, id string) (rs string, err error) {
-	request := GetRequest{Id: id}
+func (e Endpoints) Get(ctx context.Context, s string) (rs string, err error) {
+	request := GetRequest{S: s}
 	response, err := e.GetEndpoint(ctx, request)
 	if err != nil {
 		return
