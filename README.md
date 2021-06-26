@@ -24,10 +24,13 @@ About the service design, we'd better forget the traditional idea of MVC in our 
 - goods service: it implements the goods logic, such as managing goods meta data.
 - message_channel service: it implements the message channel logic, ensuring reliable message delivery.
 
-
-
-.
-
+## Usage
+```bash
+git clone https://github.com/GrantZheng/monolith_demo.git
+cd monolith_demo
+go run main.go
+curl -X POST -d '{"from":"a","to":"b"}' "http://127.0.0.1:8081/send"
+```
 
 
 

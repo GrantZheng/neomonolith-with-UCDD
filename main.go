@@ -10,9 +10,11 @@ import (
 	"os/signal"
 	"syscall"
 
-	endpoint "github.com/GrantZheng/monolith_demo/wallet/pkg/endpoint"
-	http1 "github.com/GrantZheng/monolith_demo/wallet/pkg/http"
-	service "github.com/GrantZheng/monolith_demo/wallet/pkg/service"
+	"github.com/GrantZheng/monolith_demo/common"
+
+	barragesvc "github.com/GrantZheng/monolith_demo/barrage/cmd/service"
+	giftsvc "github.com/GrantZheng/monolith_demo/gift/cmd/service"
+	liveroomsvc "github.com/GrantZheng/monolith_demo/live_room/cmd/service"
 
 	log "github.com/go-kit/kit/log"
 	lightsteptracergo "github.com/lightstep/lightstep-tracer-go"
@@ -25,9 +27,6 @@ import (
 	appdash "sourcegraph.com/sourcegraph/appdash"
 	opentracing "sourcegraph.com/sourcegraph/appdash/opentracing"
 )
-
-var tracer opentracinggo.Tracer
-var logger log.Logger
 
 // Define our flags. Your service probably won't need to bind listeners for
 // all* supported transports, but we do it here for demonstration purposes.
@@ -43,81 +42,61 @@ var zipkinURL = fs.String("zipkin-url", "", "Enable Zipkin tracing via a collect
 var lightstepToken = fs.String("lightstep-token", "", "Enable LightStep tracing via a LightStep access token")
 var appdashAddr = fs.String("appdash-addr", "", "Enable Appdash tracing via an Appdash server host:port")
 
-func Run() {
+func run() {
 	fs.Parse(os.Args[1:])
 
 	// Create a single logger, which we'll use and give to other components.
-	logger = log.NewLogfmtLogger(os.Stderr)
-	logger = log.With(logger, "ts", log.DefaultTimestampUTC)
-	logger = log.With(logger, "caller", log.DefaultCaller)
+	common.Logger = log.NewLogfmtLogger(os.Stderr)
+	common.Logger = log.With(common.Logger, "ts", log.DefaultTimestampUTC)
+	common.Logger = log.With(common.Logger, "caller", log.DefaultCaller)
 
-	//  Determine which tracer to use. We'll pass the tracer to all the
+	// Determine which tracer to use. We'll pass the tracer to all the
 	// components that use it, as a dependency
 	if *zipkinURL != "" {
-		logger.Log("tracer", "Zipkin", "URL", *zipkinURL)
+		common.Logger.Log("tracer", "Zipkin", "URL", *zipkinURL)
 		reporter := http.NewReporter(*zipkinURL)
 		defer reporter.Close()
 		endpoint, err := zipkingo.NewEndpoint("barrage", "localhost:80")
 		if err != nil {
-			logger.Log("err", err)
+			common.Logger.Log("err", err)
 			os.Exit(1)
 		}
 		localEndpoint := zipkingo.WithLocalEndpoint(endpoint)
 		nativeTracer, err := zipkingo.NewTracer(reporter, localEndpoint)
 		if err != nil {
-			logger.Log("err", err)
+			common.Logger.Log("err", err)
 			os.Exit(1)
 		}
-		tracer = zipkingoopentracing.Wrap(nativeTracer)
+		common.Tracer = zipkingoopentracing.Wrap(nativeTracer)
 	} else if *lightstepToken != "" {
-		logger.Log("tracer", "LightStep")
-		tracer = lightsteptracergo.NewTracer(lightsteptracergo.Options{AccessToken: *lightstepToken})
-		defer lightsteptracergo.Flush(context.Background(), tracer)
+		common.Logger.Log("tracer", "LightStep")
+		common.Tracer = lightsteptracergo.NewTracer(lightsteptracergo.Options{AccessToken: *lightstepToken})
+		defer lightsteptracergo.Flush(context.Background(), common.Tracer)
 	} else if *appdashAddr != "" {
-		logger.Log("tracer", "Appdash", "addr", *appdashAddr)
+		common.Logger.Log("tracer", "Appdash", "addr", *appdashAddr)
 		collector := appdash.NewRemoteCollector(*appdashAddr)
-		tracer = opentracing.NewTracer(collector)
+		common.Tracer = opentracing.NewTracer(collector)
 		defer collector.Close()
 	} else {
-		logger.Log("tracer", "none")
-		tracer = opentracinggo.GlobalTracer()
+		common.Logger.Log("tracer", "none")
+		common.Tracer = opentracinggo.GlobalTracer()
 	}
 
-	svc := service.New(getServiceMiddleware(logger))
-	eps := endpoint.New(svc, getEndpointMiddleware(logger))
-	g := createService(eps)
+	g := &group.Group{}
+	initHttpHandler(g)
 	initMetricsEndpoint(g)
 	initCancelInterrupt(g)
-	logger.Log("exit", g.Run())
-
-}
-
-func initHttpHandler(endpoints endpoint.Endpoints, g *group.Group) {
-	options := defaultHttpOptions(logger, tracer)
-	// Add your http options here
-
-	httpHandler := http1.NewHTTPHandler(endpoints, options)
-	httpListener, err := net.Listen("tcp", *httpAddr)
-	if err != nil {
-		logger.Log("transport", "HTTP", "during", "Listen", "err", err)
-	}
-	g.Add(func() error {
-		logger.Log("transport", "HTTP", "addr", *httpAddr)
-		return http2.Serve(httpListener, httpHandler)
-	}, func(error) {
-		httpListener.Close()
-	})
-
+	common.Logger.Log("exit", g.Run())
 }
 
 func initMetricsEndpoint(g *group.Group) {
 	http2.DefaultServeMux.Handle("/metrics", promhttp.Handler())
 	debugListener, err := net.Listen("tcp", *debugAddr)
 	if err != nil {
-		logger.Log("transport", "debug/HTTP", "during", "Listen", "err", err)
+		common.Logger.Log("transport", "debug/HTTP", "during", "Listen", "err", err)
 	}
 	g.Add(func() error {
-		logger.Log("transport", "debug/HTTP", "addr", *debugAddr)
+		common.Logger.Log("transport", "debug/HTTP", "addr", *debugAddr)
 		return http2.Serve(debugListener, http2.DefaultServeMux)
 	}, func(error) {
 		debugListener.Close()
@@ -139,8 +118,25 @@ func initCancelInterrupt(g *group.Group) {
 	})
 }
 
-func createService(endpoints endpoint.Endpoints) (g *group.Group) {
-	g = &group.Group{}
-	initHttpHandler(endpoints, g)
-	return g
+func initHttpHandler(g *group.Group) http2.Handler {
+	mux := http2.NewServeMux()
+	barragesvc.InitHttpHandler(mux)
+	giftsvc.InitHttpHandler(mux)
+	liveroomsvc.InitHttpHandler(mux)
+
+	httpListener, err := net.Listen("tcp", *httpAddr)
+	if err != nil {
+		common.Logger.Log("transport", "HTTP", "during", "Listen", "err", err)
+	}
+	g.Add(func() error {
+		common.Logger.Log("transport", "HTTP", "addr", *httpAddr)
+		return http2.Serve(httpListener, mux)
+	}, func(error) {
+		httpListener.Close()
+	})
+	return mux
+}
+
+func main() {
+	run()
 }

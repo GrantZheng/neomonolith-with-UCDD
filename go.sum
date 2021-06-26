@@ -1,6 +1,10 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/GrantZheng/monolith_demo/barrage v0.0.0-20210625160321-ae9186b77050 h1:KmyFT9bqPHDBFoEWsR6m97RqoJ7In9Pv0WhN4Ln3Bw4=
+github.com/GrantZheng/monolith_demo/barrage v0.0.0-20210625160321-ae9186b77050/go.mod h1:MH2TVDPz5s39ctneN8hKqhD2VU3iPqhGyBeyLcEIIuU=
+github.com/GrantZheng/monolith_demo/pay v0.0.0-20210625160321-ae9186b77050 h1:xzXtIVDDBf/y+7JqCYsOEio15KEZO6S+YtdMd0YAiOg=
+github.com/GrantZheng/monolith_demo/pay v0.0.0-20210625160321-ae9186b77050/go.mod h1:TBDUHAv22WX9Juvt2MlkFk7adNcCh0iCk5UJuPwEB8U=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=

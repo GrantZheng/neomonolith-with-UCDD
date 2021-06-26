@@ -4,6 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"net"
+	http2 "net/http"
+	"os"
+	"os/signal"
+	"syscall"
+
+	"github.com/GrantZheng/monolith_demo/common"
+
 	endpoint "github.com/GrantZheng/monolith_demo/barrage/pkg/endpoint"
 	http1 "github.com/GrantZheng/monolith_demo/barrage/pkg/http"
 	service "github.com/GrantZheng/monolith_demo/barrage/pkg/service"
@@ -18,13 +26,8 @@ import (
 	http "github.com/openzipkin/zipkin-go/reporter/http"
 	prometheus1 "github.com/prometheus/client_golang/prometheus"
 	promhttp "github.com/prometheus/client_golang/prometheus/promhttp"
-	"net"
-	http2 "net/http"
-	"os"
-	"os/signal"
 	appdash "sourcegraph.com/sourcegraph/appdash"
 	opentracing "sourcegraph.com/sourcegraph/appdash/opentracing"
-	"syscall"
 )
 
 var tracer opentracinggo.Tracer
@@ -156,4 +159,10 @@ func initCancelInterrupt(g *group.Group) {
 	}, func(error) {
 		close(cancelInterrupt)
 	})
+}
+
+func InitHttpHandler(mux *http2.ServeMux) http2.Handler {
+	svc := service.New(getServiceMiddleware(common.Logger))
+	eps := endpoint.New(svc, getEndpointMiddleware(common.Logger))
+	return http1.InitHTTPHandler(mux, eps, defaultHttpOptions(common.Logger, common.Tracer))
 }

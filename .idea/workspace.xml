@@ -20,79 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e580de0d-40be-4602-83c6-8198bfb5ee1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/barrage/client/http/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/cmd/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/barrage/pkg/http/handler_base.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/barrage/pkg/service/room.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/comm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gift/pkg/http/handler_base.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/live_room/pkg/http/handler_base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/barrage/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barrage/pkg/service/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/service/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/barrage/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/barrage/go.sum" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/barrage/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/barrage/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/client/http/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/cmd/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gift/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/gift/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/service/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/service/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gift/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/gift/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/client/http/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/goods/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/service/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/service/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goods/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/goods/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/client/http/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gift/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/go.mod" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/live_room/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/live_room/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/live_room/pkg/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/live_room/go.mod" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_channel/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/message_channel/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_channel/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/message_channel/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/pay/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pay/pkg/service/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/pay/pkg/service/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/client/http/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/cmd/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/cmd/service/service_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/cmd/service/service_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/room/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/endpoint/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/endpoint/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/endpoint/endpoint_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/endpoint/endpoint_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/http/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/http/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/http/handler_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/http/handler_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/service/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/service/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/room/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/room/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensitive_words/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sensitive_words/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensitive_words/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/sensitive_words/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_content/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/video_content/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_content/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/video_content/pkg/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/wallet/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/wallet/pkg/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_channel/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pay/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/room/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensitive_words/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_content/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet/cmd/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/wallet/cmd/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wallet/go.sum" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +84,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,15 +100,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="397" y="160" key="SettingsEditor" timestamp="1624611670694">
+    <state x="397" y="160" key="SettingsEditor" timestamp="1624637161253">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="397" y="160" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1624611670694" />
+    <state x="397" y="160" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1624637161253" />
     <state x="397" y="170" key="SettingsEditor/0.23.1792.1030@0.23.1792.1030" timestamp="1624537182061" />
   </component>
   <component name="XDebuggerManager">

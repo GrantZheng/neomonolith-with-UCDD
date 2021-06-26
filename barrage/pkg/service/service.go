@@ -14,6 +14,7 @@ type basicBarrageService struct{}
 
 func (b *basicBarrageService) Send(ctx context.Context, from string, to string, msg string) (rs string, err error) {
 	// TODO implement the business logic of Send
+	rs = "ok"
 	return rs, err
 }
 
