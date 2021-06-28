@@ -25,6 +25,9 @@ About the service design, we'd better forget the traditional idea of MVC in our 
 - goods service: it implements the goods logic, such as managing goods meta data.
 - message_channel service: it implements the message channel logic, ensuring reliable message delivery.
 
+### About the communication between services
+The communication between services must be completed through the interface.It is a very critical point for building a monolith that is easy to split.
+
 ## Usage
 ```bash
 git clone https://github.com/GrantZheng/monolith_demo.git
