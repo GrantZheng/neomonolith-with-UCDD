@@ -26,7 +26,7 @@ About the service design, we'd better forget the traditional idea of MVC in our 
 - message_channel service: it implements the message channel logic, ensuring reliable message delivery.
 
 ### About the communication between services
-The communication between services must be completed through the interface.It is a very critical point for building a monolith that is easy to split.
+The communication between services must be completed through the interface defined in the service-name/pkg/service/service.go.It is a very critical point for building a monolith that is easy to split.
 
 ## Usage
 ```bash
