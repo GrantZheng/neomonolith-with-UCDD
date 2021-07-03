@@ -1,4 +1,4 @@
-# Monolith_demo
+# Neomonolith with UCDD
 The monolith and microservice designs have been discussed in many papers. So I omit discussion of it here. I think monolith is a better choice for entrepreneurial projects.
 Monolith_demo project is an example of the [elegant monolith or neomonolith](https://inconshreveable.com/10-07-2015/the-neomonolith/), built by the [Go-kit toolkit](https://github.com/go-kit/kit) with the [Gokit-cli](https://github.com/GrantZheng/kit). It describes a live stream application consisting of multiple services, such as room, gift, user and so on.
 
