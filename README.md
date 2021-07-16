@@ -31,7 +31,7 @@ Each service has its own directory.The communication between services must be co
 
 ## Usage
 ```bash
-git clone https://github.com/GrantZheng/monolith_demo.git
+git clone https://github.com/GrantZheng/neomonolith-with-UCDD.git
 cd monolith_demo
 go run main.go
 curl -X POST -d '{"from":"a","to":"b"}' "http://127.0.0.1:8081/send"
